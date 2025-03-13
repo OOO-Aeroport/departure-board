@@ -36,13 +36,21 @@ builder.Services.AddScoped<FlightService>();
 
 // External API configuration
 builder.Services.AddTransient<TicketOfficeApi>();
+builder.Services.AddTransient<GroundHandlingApi>();
 
 // HttpClients configuration
+    
+    // Ticket office
 var ticketOfficeBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:TicketOfficeBaseUrl")
-                          ?? throw new Exception("TicketOfficeBaseUrl is missing");
+    ?? throw new Exception("TicketOfficeBaseUrl is missing");
 builder.Services.AddHttpClient<TicketOfficeApi>(client
     => client.BaseAddress = new Uri(ticketOfficeBaseUrl));
 
+    // Ground handling
+var groundHandlingBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:GroundHandlingBaseUrl")
+    ?? throw new Exception("GroundHandlingBaseUrl is missing");
+builder.Services.AddHttpClient<GroundHandlingApi>(client
+    => client.BaseAddress = new Uri(groundHandlingBaseUrl));
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandler>();

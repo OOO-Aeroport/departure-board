@@ -2,12 +2,12 @@ using System.Net.Http.Json;
 
 namespace DepartureBoard.Infrastructure.ExternalApi;
 
-public class TicketOfficeApi(HttpClient client)
+public class GroundHandlingApi(HttpClient client)
 {
     private readonly HttpClient _client = client;
-    
+
     public async Task Post(object? dto)
     {
-        await _client.PostAsJsonAsync("/ticket-office/flights", 5);
+        await _client.PostAsJsonAsync("/uno/api/v1/order/process-order", dto);
     }
 }
