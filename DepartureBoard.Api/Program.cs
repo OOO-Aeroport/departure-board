@@ -1,7 +1,9 @@
 using DepartureBoard.Api.Middleware;
+using DepartureBoard.App;
 using DepartureBoard.App.Services;
 using DepartureBoard.Domain.Entities;
 using DepartureBoard.Domain.Repos;
+using DepartureBoard.Infrastructure.ExternalApi;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 using DepartureBoard.Infrastructure.Repos.EntityFramework;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging
     .ClearProviders()
     .AddConsole();
-builder.Services.AddLogging();
 
 // Swagger configuration
 builder.Services.AddEndpointsApiExplorer();
@@ -22,26 +23,43 @@ builder.Services.AddSwaggerGen(options
 
 // DbContext configuration
 builder.Services.AddDbContext<AppDbContext>(options
-    => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+    => options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres")));
 
 // Repos configuration
 builder.Services.AddScoped<IRepository<Airplane>, EfAirplaneRepository>();
 builder.Services.AddScoped<IRepository<Flight>, EfFlightRepository>();
-
-// Hosted services configuration
+builder.Services.AddScoped<IAirplaneAndFlightUnitOfWork, EfAirplaneAndFlightUnitOfWork>();
 
 // Services configuration
 builder.Services.AddSingleton<TimeService>();
-builder.Services.AddTransient<FlightService>();
+builder.Services.AddScoped<FlightService>();
+
+// External API configuration
+//builder.Services.AddTransient<TicketOfficeApi>();
+
+// HttpClients configuration
+//var ticketOfficeBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:TicketOfficeBaseUrl")
+//                          ?? throw new Exception("TicketOfficeBaseUrl is missing");
+//builder.Services.AddHttpClient<TicketOfficeApi>(client
+//    => client.BaseAddress = new Uri(ticketOfficeBaseUrl));
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandler>();
+
+// Swagger configuration
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Departure Board API V1");
+    options.RoutePrefix = string.Empty;
+});
 
 // Starting timer
 var timeService = app.Services.GetRequiredService<TimeService>();
 _ = Task.Run(() => timeService.Start());
 
-//app.UseHttpsRedirection();
-app.UseMiddleware<LoggerMiddleware>();
+app.UseMiddleware<RequestLogger>();
 app.MapEndpoints();
 
 app.Run();

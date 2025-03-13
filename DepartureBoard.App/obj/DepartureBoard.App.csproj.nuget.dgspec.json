@@ -56,7 +56,7 @@
           "dependencies": {
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
-              "version": "[10.0.0-preview.1.25080.5, )"
+              "version": "[9.0.3, )"
             }
           },
           "imports": [

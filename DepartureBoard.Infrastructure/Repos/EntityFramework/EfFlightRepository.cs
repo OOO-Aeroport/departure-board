@@ -8,28 +8,9 @@ public class EfFlightRepository(AppDbContext context) : IRepository<Flight>
 {
     private readonly AppDbContext _context = context;
 
-    public async Task AddFlightAsync(Airplane airplane)
-    {
-        await using var transaction = await _context.Database.BeginTransactionAsync();
-        try
-        {
-            await _context.Airplanes.AddAsync(airplane);
-            await _context.SaveChangesAsync();
+    public async Task AddAsync(Flight flight)
+        => await _context.Flights.AddAsync(flight);
 
-            var flight = new Flight
-            {
-                PlaneId = airplane.Id,
-                PassengersCount = 0
-            };
-
-            await _context.Flights.AddAsync(flight);
-            await _context.SaveChangesAsync();
-
-            await transaction.CommitAsync();
-        }
-        catch (Exception)
-        {
-            await transaction.RollbackAsync();
-        }
-    }
+    public async Task<Flight?> GetByIdAsync(int id)
+        => await _context.Flights.FindAsync(id);
 }

@@ -1,6 +1,6 @@
 using DepartureBoard.App.Services;
 using DepartureBoard.Domain.Entities;
-using Microsoft.AspNetCore.Http.HttpResults;
+using DepartureBoard.Infrastructure.ExternalApi;
 
 namespace DepartureBoard.Api.Middleware;
 
@@ -8,7 +8,8 @@ public static class EndpointMapper
 {
     public static void MapEndpoints(this WebApplication app)
     {
-        app.MapPut("departure-board/time/speed-factor", (HttpContext context, TimeService timeService) =>
+        app.MapPut("departure-board/time/speed-factor", (HttpContext context,
+            TimeService timeService) =>
         {
             if (!context.Request.Query.TryGetValue("speed-factor", out var temp))
                 return Results.BadRequest("speed-factor not found");
@@ -24,11 +25,12 @@ public static class EndpointMapper
         app.MapGet("departure-board/time", (TimeService timeService)
             => Results.Ok(timeService.Now.ToString("HH:mm")));
         
-        app.MapPost("departure-board/planes", async (FlightService flightService,
-            TimeService timeService, Airplane plane) =>
+        app.MapPost("departure-board/planes", async (/*TicketOfficeApi ticketOfficeApi,*/
+            FlightService flightService, TimeService timeService, Airplane airplane) =>
         {
-            var registrationEndTime = (timeService.Now + TimeSpan.FromHours(2)).ToString("HH:mm");
-            //await flightService.RegisterFlight(plane, registrationEndTime);
+            var departureTime = timeService.Now + TimeSpan.FromHours(4);
+            await flightService.RegisterFlight(airplane, departureTime);
+            //await ticketOfficeApi.Post(new {airplane, departureTime});
             return Results.Ok();
         });
     }

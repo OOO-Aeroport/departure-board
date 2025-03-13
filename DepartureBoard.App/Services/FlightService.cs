@@ -1,14 +1,11 @@
 using DepartureBoard.Domain.Entities;
-using DepartureBoard.Domain.Repos;
 
 namespace DepartureBoard.App.Services;
 
-public class FlightService(IFlightRepo flightRepo)
+public class FlightService(IAirplaneAndFlightUnitOfWork unitOfWork)
 {
-    private readonly IFlightRepo _flightRepo = flightRepo;
+    private readonly IAirplaneAndFlightUnitOfWork _unitOfWork = unitOfWork;
     
-    public async Task RegisterFlight(Airplane plane)
-    {
-        await _flightRepo.AddFlightAsync(plane);
-    }
+    public async Task RegisterFlight(Airplane plane, DateTime departureTime) 
+        => await _unitOfWork.AddAirplaneAndFlightAsync(plane, departureTime);
 }

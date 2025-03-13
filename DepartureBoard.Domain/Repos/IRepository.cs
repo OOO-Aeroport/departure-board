@@ -2,6 +2,6 @@ namespace DepartureBoard.Domain.Repos;
 
 public interface IRepository<T>
 {
-    Task<int> AddAsync(T entity);
-    Task<T> GetById(int id);
+    Task AddAsync(T entity);
+    Task<T?> GetByIdAsync(int id);
 }

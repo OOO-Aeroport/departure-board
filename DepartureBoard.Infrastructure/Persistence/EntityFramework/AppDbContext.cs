@@ -10,7 +10,15 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<Airplane>().ToTable("planes");
+        base.OnModelCreating(builder);
+        
+        builder.Entity<Flight>()
+            .HasOne(f => f.Airplane)
+            .WithOne(a => a.Flight)
+            .HasForeignKey<Flight>(f => f.AirplaneId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
         builder.Entity<Flight>().ToTable("flights");
+        builder.Entity<Airplane>().ToTable("planes");
     }
 }

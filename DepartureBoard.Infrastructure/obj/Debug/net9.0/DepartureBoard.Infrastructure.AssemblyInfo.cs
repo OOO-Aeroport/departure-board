@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DepartureBoard.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5183ce7dac085df4d5b3b125292fcca2da2f9f22")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65a63b987a3eb0de9c2986d437bb77ab1c628dcd")]
 [assembly: System.Reflection.AssemblyProductAttribute("DepartureBoard.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DepartureBoard.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

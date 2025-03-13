@@ -1,22 +1,31 @@
+using DepartureBoard.App;
 using DepartureBoard.Domain.Entities;
+using DepartureBoard.Domain.Repos;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 
 namespace DepartureBoard.Infrastructure.Repos.EntityFramework;
 
-public class EfAirplaneAndFlightUnitOfWork(AppDbContext context, EfAirplaneRepository airplaneRepository, EfFlightRepository flightRepository)
+public class EfAirplaneAndFlightUnitOfWork(AppDbContext context, IRepository<Airplane> airplaneRepository,
+    IRepository<Flight> flightRepository) : IAirplaneAndFlightUnitOfWork
 {
     private readonly AppDbContext _context = context;
-    private readonly EfAirplaneRepository _airplaneRepository = airplaneRepository;
-    private readonly EfFlightRepository _flightRepository = flightRepository;
+    private readonly IRepository<Airplane> _airplaneRepository = airplaneRepository;
+    private readonly IRepository<Flight> _flightRepository = flightRepository;
     
-    public async Task CreateAirplaneAndFlight(Airplane airplane)
+    public async Task AddAirplaneAndFlightAsync(Airplane airplane, DateTime departureTime)
     {
         await using var transaction = await _context.Database.BeginTransactionAsync();
 
         try
         {
             await _airplaneRepository.AddAsync(airplane);
-            //await _flightRepository.AddAsync();
+            var flight = new Flight
+            {
+                AirplaneId = airplane.Id,
+                Airplane = airplane,
+                DepartureTime = departureTime.ToUniversalTime()
+            };
+            await _flightRepository.AddAsync(flight);
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
         }
