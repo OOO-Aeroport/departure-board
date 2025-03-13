@@ -1,6 +1,6 @@
 namespace DepartureBoard.Domain.Entities;
 
-public class Plane
+public class Airplane
 {
     public int Id { get; set; }
 }

@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DepartureBoard.App\DepartureBoard.App.csproj" />
       <ProjectReference Include="..\DepartureBoard.Domain\DepartureBoard.Domain.csproj" />
     </ItemGroup>
 

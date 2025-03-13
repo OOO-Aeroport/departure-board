@@ -4,21 +4,21 @@ using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 
 namespace DepartureBoard.Infrastructure.Repos.EntityFramework;
 
-public class EfFlightRepo(AppDbContext context) : IFlightRepo
+public class EfFlightRepository(AppDbContext context) : IRepository<Flight>
 {
     private readonly AppDbContext _context = context;
 
-    public async Task CreateFlightAsync(Plane plane)
+    public async Task AddFlightAsync(Airplane airplane)
     {
         await using var transaction = await _context.Database.BeginTransactionAsync();
         try
         {
-            await _context.Planes.AddAsync(plane);
+            await _context.Airplanes.AddAsync(airplane);
             await _context.SaveChangesAsync();
 
             var flight = new Flight
             {
-                PlaneId = plane.Id,
+                PlaneId = airplane.Id,
                 PassengersCount = 0
             };
 

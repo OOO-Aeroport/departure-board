@@ -6,5 +6,5 @@ public class Flight
     public int PlaneId { get; set; }
     public int PassengersCount { get; set; }
     
-    public Plane Plane { get; set; }
+    public Airplane Airplane { get; set; }
 }
