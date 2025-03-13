@@ -8,6 +8,6 @@ public class TicketOfficeApi(HttpClient client)
     
     public async Task Post(object? dto)
     {
-        await _client.PostAsJsonAsync("/flights", dto);
+        await _client.PostAsJsonAsync("/flights", 5);
     }
 }

@@ -25,12 +25,18 @@ public static class EndpointMapper
         app.MapGet("departure-board/time", (TimeService timeService)
             => Results.Ok(timeService.Now.ToString("HH:mm")));
         
-        app.MapPost("departure-board/planes", async (/*TicketOfficeApi ticketOfficeApi,*/
+        app.MapPost("departure-board/planes", async (TicketOfficeApi ticketOfficeApi,
             FlightService flightService, TimeService timeService, Airplane airplane) =>
         {
             var departureTime = timeService.Now + TimeSpan.FromHours(4);
             await flightService.RegisterFlight(airplane, departureTime);
-            //await ticketOfficeApi.Post(new {airplane, departureTime});
+            await ticketOfficeApi.Post(new
+            {
+                airplane.Flight.Id,
+                departureTime,
+                airplane.SeatsAvailable,
+                airplane.BaggageAvailable
+            });
             return Results.Ok();
         });
     }

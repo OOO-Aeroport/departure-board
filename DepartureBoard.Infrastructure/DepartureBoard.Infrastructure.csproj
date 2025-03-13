@@ -19,8 +19,4 @@
       <ProjectReference Include="..\DepartureBoard.Domain\DepartureBoard.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Persistence\EntityFramework\Migrations\" />
-    </ItemGroup>
-
 </Project>

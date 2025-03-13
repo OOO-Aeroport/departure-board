@@ -35,13 +35,13 @@ builder.Services.AddSingleton<TimeService>();
 builder.Services.AddScoped<FlightService>();
 
 // External API configuration
-//builder.Services.AddTransient<TicketOfficeApi>();
+builder.Services.AddTransient<TicketOfficeApi>();
 
 // HttpClients configuration
-//var ticketOfficeBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:TicketOfficeBaseUrl")
-//                          ?? throw new Exception("TicketOfficeBaseUrl is missing");
-//builder.Services.AddHttpClient<TicketOfficeApi>(client
-//    => client.BaseAddress = new Uri(ticketOfficeBaseUrl));
+var ticketOfficeBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:TicketOfficeBaseUrl")
+                          ?? throw new Exception("TicketOfficeBaseUrl is missing");
+builder.Services.AddHttpClient<TicketOfficeApi>(client
+    => client.BaseAddress = new Uri(ticketOfficeBaseUrl));
 
 var app = builder.Build();
 

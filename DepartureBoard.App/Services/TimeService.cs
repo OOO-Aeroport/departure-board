@@ -25,7 +25,7 @@ public class TimeService(ILogger<TimeService> logger) : IDisposable
         Interlocked.Add(ref _ticks, TimeSpan.TicksPerSecond * SpeedFactor);
 
         var now = Now;
-        //if ((now - _lastLoggedTime).TotalHours < 1) return;
+        if ((now - _lastLoggedTime).TotalHours < 1) return;
         _logger.LogInformation($"Time: {now}");
         _lastLoggedTime = now;
     }
