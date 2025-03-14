@@ -30,20 +30,6 @@ public class TimeService(ILogger<TimeService> logger) : IDisposable
         _lastLoggedTime = now;
     }
 
-    /*public void CountDown(int minutes, Action callback)
-    {
-        var endTime = Now.AddMinutes(minutes);
-        var timer = new Timer(_ =>
-        {
-            if (Now >= endTime)
-            {
-                callback();
-            }
-        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
-
-        timer.Dispose();
-    }*/
-
     public void Dispose()
     {
         Dispose(true);

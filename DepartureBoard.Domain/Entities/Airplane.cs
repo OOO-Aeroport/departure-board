@@ -22,5 +22,7 @@ public class Airplane
     [JsonPropertyName("maxFuel")]
     public int MaxFuel { get; set; }
     
+    public bool Handled { get; set; }
+    
     public Flight Flight { get; set; }
 }

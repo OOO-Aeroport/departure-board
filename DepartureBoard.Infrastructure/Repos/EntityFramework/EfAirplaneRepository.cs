@@ -13,4 +13,7 @@ public class EfAirplaneRepository(AppDbContext context) : IRepository<Airplane>
 
     public async Task<Airplane?> GetByIdAsync(int id)
         => await _context.Airplanes.FindAsync(id);
+
+    public async Task SaveChangesAsync() 
+        => await _context.SaveChangesAsync();
 }

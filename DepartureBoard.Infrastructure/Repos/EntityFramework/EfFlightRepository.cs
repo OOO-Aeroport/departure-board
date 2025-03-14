@@ -13,4 +13,7 @@ public class EfFlightRepository(AppDbContext context) : IRepository<Flight>
 
     public async Task<Flight?> GetByIdAsync(int id)
         => await _context.Flights.FindAsync(id);
+    
+    public async Task SaveChangesAsync() 
+        => await _context.SaveChangesAsync();
 }

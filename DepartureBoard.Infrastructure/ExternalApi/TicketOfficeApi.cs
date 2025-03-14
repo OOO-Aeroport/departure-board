@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace DepartureBoard.Infrastructure.ExternalApi;
 
@@ -8,6 +9,10 @@ public class TicketOfficeApi(HttpClient client)
     
     public async Task Post(object? dto)
     {
-        await _client.PostAsJsonAsync("/ticket-office/flights", 5);
+        var jsonSerializerOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+        await _client.PostAsJsonAsync("ticket-office/flights", dto, jsonSerializerOptions);
     }
 }

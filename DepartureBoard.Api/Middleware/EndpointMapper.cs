@@ -11,19 +11,27 @@ public static class EndpointMapper
         app.MapPut("departure-board/time/speed-factor", (HttpContext context,
             TimeService timeService) =>
         {
-            if (!context.Request.Query.TryGetValue("speed-factor", out var temp))
-                return Results.BadRequest("speed-factor not found");
-
-            if (!int.TryParse(temp, out var speedFactor))
+            if (!context.Request.Query.TryGetValue("speed-factor", out var temp)
+                || !int.TryParse(temp, out var speedFactor))
+            {
                 return Results.BadRequest("speed-factor is invalid");
-            
+            }
+
             timeService.SpeedFactor = speedFactor;
             
             return Results.Ok();
         });
 
-        app.MapGet("departure-board/time", (TimeService timeService)
-            => Results.Ok(timeService.Now.ToString("HH:mm")));
+        app.MapGet("departure-board/time", (HttpContext context, TimeService timeService) =>
+        {
+            var format = context.Request.Query.TryGetValue("days", out var temp)
+                && bool.TryParse(temp, out var days)
+                && days
+                ? "dd:HH:mm"
+                : "HH:mm";
+
+            return Results.Ok(timeService.Now.ToString(format));
+        });
         
         app.MapPost("departure-board/planes", async (TicketOfficeApi ticketOfficeApi,
             GroundHandlingApi groundHandlingApi, FlightService flightService,
@@ -49,5 +57,8 @@ public static class EndpointMapper
             
             return Results.Ok();
         });
+
+        app.MapPatch("departure-board/planes/handled", async (int id, AirplaneService service)
+            => await service.MarkAsHandledAsync(id));
     }
 }
