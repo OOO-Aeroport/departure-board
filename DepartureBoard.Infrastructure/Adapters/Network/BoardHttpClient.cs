@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 using DepartureBoard.App.Ports.Network;
+using DepartureBoard.App.Scenarios;
 
 namespace DepartureBoard.Infrastructure.Adapters.Network;
 

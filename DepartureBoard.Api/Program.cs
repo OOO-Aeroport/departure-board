@@ -8,7 +8,6 @@ using DepartureBoard.Domain.Ports.Persistence;
 using DepartureBoard.Infrastructure.Adapters.Network;
 using DepartureBoard.Infrastructure.Adapters.Persistence.EntityFramework;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
-using DepartureBoard.Infrastructure.Repos.EntityFramework;
 using DepartureBoard.Misc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -43,7 +42,7 @@ builder.Services.AddSingleton<TimeService>();
 
 // Scenarios configuration
 builder.Services.AddScoped<RegisterFlightScenario>();
-builder.Services.AddScoped<MarkAirplaneAsHandledScenario>();
+builder.Services.AddScoped<HandleAirplaneScenario>();
 builder.Services.AddScoped<SendPassengersToBoardScenario>();
 
 // Clients configuration
@@ -56,21 +55,12 @@ builder.Services.AddSingleton<DtoBuffer<TicketOfficeHttpClient>>();
 builder.Services.AddSingleton<DtoBuffer<GroundHandlingHttpClient>>();
 
 // HttpClients configuration
-    // Ticket office
-var ticketOfficeBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:TicketOfficeBaseUrl")
-    ?? throw new Exception("TicketOfficeBaseUrl is missing");
 builder.Services.AddHttpClient<TicketOfficeHttpClient>(client
-    => client.BaseAddress = new Uri(ticketOfficeBaseUrl));
-    // Ground handling
-var groundHandlingBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:GroundHandlingBaseUrl")
-    ?? throw new Exception("GroundHandlingBaseUrl is missing");
+    => client.BaseAddress = new Uri(RequireUrl("ExternalApiSettings:TicketOfficeBaseUrl")));
 builder.Services.AddHttpClient<GroundHandlingHttpClient>(client
-    => client.BaseAddress = new Uri(groundHandlingBaseUrl));
-    // Board
-var boardBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:BoardBaseUrl")
-    ?? throw new Exception("BoardBaseUrl is missing");
+    => client.BaseAddress = new Uri(RequireUrl("ExternalApiSettings:GroundHandlingBaseUrl")));
 builder.Services.AddHttpClient<BoardHttpClient>(client
-    => client.BaseAddress = new Uri(boardBaseUrl));
+    => client.BaseAddress = new Uri(RequireUrl("ExternalApiSettings:BoardBaseUrl")));
 
 var app = builder.Build();
 
@@ -92,3 +82,10 @@ app.UseMiddleware<RequestLogger>();
 app.MapEndpoints();
 
 app.Run();
+
+return;
+
+string RequireUrl(string configurationProperty) 
+    => builder.Configuration.GetValue<string>(configurationProperty)
+       ?? throw new NullReferenceException();
+       

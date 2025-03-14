@@ -4,10 +4,10 @@ using DepartureBoard.Domain.Ports.Persistence;
 
 namespace DepartureBoard.App.Scenarios;
 
-public class SendPassengersToBoardScenario(IRepository<Flight> flightRepository, IBoardClient boardClient)
+public class SendPassengersToBoardScenario(IRepository<Flight> flightRepository, IBoardClient board)
 {
     private readonly IRepository<Flight> _flightRepository = flightRepository;
-    private readonly IBoardClient _board = boardClient;
+    private readonly IBoardClient _board = board;
     
     public async Task Invoke(int flightId, List<object> passengers)
     {

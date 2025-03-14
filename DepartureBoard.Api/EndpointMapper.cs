@@ -36,24 +36,22 @@ public static class EndpointMapper
         });
 
         app.MapPost("departure-board/planes", async (ITicketOfficeClient ticketOffice,
-            IGroundHandlingClient groundHandling, RegisterFlightScenario flightService,
+            IGroundHandlingClient groundHandling, RegisterFlightScenario scenario,
             TimeService timeService, Airplane airplane) =>
         {
             var departureTime = timeService.Now + TimeSpan.FromHours(4);
             
-            await flightService.Invoke(airplane, departureTime,
+            await scenario.Invoke(airplane, departureTime,
                 ticketOffice, groundHandling);
 
             return Results.Ok();
         });
 
-        app.MapPost("departure-board/planes/handled/{id}", (int id, MarkAirplaneAsHandledScenario service)
-            => service.Invoke(id));
+        app.MapPut("departure-board/planes/{id}/handled", (int id, HandleAirplaneScenario scenario)
+            => scenario.Invoke(id));
 
-        app.MapPost("departure-board/flights/passengers", (int flightId, List<object> passengers,
-            ILogger<Program> logger, SendPassengersToBoardScenario scenario) =>
-        {
-            _ = scenario.Invoke(flightId, passengers);
-        });
+        app.MapPost("departure-board/flights/{id}/passengers", async (int id, List<object> passengers,
+            SendPassengersToBoardScenario scenario) 
+            => await scenario.Invoke(id, passengers));
     }
 }

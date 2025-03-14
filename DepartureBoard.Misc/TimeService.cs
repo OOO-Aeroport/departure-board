@@ -26,7 +26,7 @@ public class TimeService(ILogger<TimeService> logger) : IDisposable
 
         var now = Now;
         if ((now - _lastLoggedTime).TotalHours < 1) return;
-        _logger.LogInformation($"Time: {now}");
+        _logger.LogInformation("Time: {now}", Now);
         _lastLoggedTime = now;
     }
 

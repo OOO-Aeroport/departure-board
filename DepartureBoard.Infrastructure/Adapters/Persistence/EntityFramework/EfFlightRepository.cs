@@ -2,7 +2,7 @@ using DepartureBoard.Domain.Entities;
 using DepartureBoard.Domain.Ports.Persistence;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 
-namespace DepartureBoard.Infrastructure.Repos.EntityFramework;
+namespace DepartureBoard.Infrastructure.Adapters.Persistence.EntityFramework;
 
 public class EfFlightRepository(AppDbContext context) : IRepository<Flight>
 {

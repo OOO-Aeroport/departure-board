@@ -1,3 +1,5 @@
+using DepartureBoard.App.Scenarios;
+
 namespace DepartureBoard.App.Ports.Network;
 
 public interface IBoardClient
