@@ -1,0 +1,12 @@
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\bin\Debug\net9.0\DepartureBoard.Misc.deps.json
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\bin\Debug\net9.0\DepartureBoard.Misc.dll
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\bin\Debug\net9.0\DepartureBoard.Misc.pdb
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.AssemblyInfoInputs.cache
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.AssemblyInfo.cs
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.csproj.CoreCompileInputs.cache
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.sourcelink.json
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.dll
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\refint\DepartureBoard.Misc.dll
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.pdb
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\ref\DepartureBoard.Misc.dll
