@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DepartureBoard.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec66facac8c1dc6a05b00c5b230861a59a0ebc79")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5d52a9dd533e2c787616e0876113e552ad4b202")]
 [assembly: System.Reflection.AssemblyProductAttribute("DepartureBoard.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DepartureBoard.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

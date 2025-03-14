@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "sbzFl9iK0oE=",
+  "dgSpecHash": "Fb7DtRp14z8=",
   "success": true,
   "projectFilePath": "C:\\Users\\akhmy\\Documents\\Projects\\Rider\\DepartureBoard\\DepartureBoard.Misc\\DepartureBoard.Misc.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\akhmy\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\10.0.0-preview.1.25080.5\\microsoft.extensions.dependencyinjection.10.0.0-preview.1.25080.5.nupkg.sha512",
+    "C:\\Users\\akhmy\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0-preview.1.25080.5\\microsoft.extensions.dependencyinjection.abstractions.10.0.0-preview.1.25080.5.nupkg.sha512",
+    "C:\\Users\\akhmy\\.nuget\\packages\\microsoft.extensions.logging\\10.0.0-preview.1.25080.5\\microsoft.extensions.logging.10.0.0-preview.1.25080.5.nupkg.sha512",
+    "C:\\Users\\akhmy\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0-preview.1.25080.5\\microsoft.extensions.logging.abstractions.10.0.0-preview.1.25080.5.nupkg.sha512",
+    "C:\\Users\\akhmy\\.nuget\\packages\\microsoft.extensions.options\\10.0.0-preview.1.25080.5\\microsoft.extensions.options.10.0.0-preview.1.25080.5.nupkg.sha512",
+    "C:\\Users\\akhmy\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.0-preview.1.25080.5\\microsoft.extensions.primitives.10.0.0-preview.1.25080.5.nupkg.sha512",
+    "C:\\Users\\akhmy\\.nuget\\packages\\system.diagnostics.diagnosticsource\\10.0.0-preview.1.25080.5\\system.diagnostics.diagnosticsource.10.0.0-preview.1.25080.5.nupkg.sha512"
+  ],
   "logs": []
 }

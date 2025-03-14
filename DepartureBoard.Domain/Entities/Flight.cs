@@ -4,10 +4,10 @@ namespace DepartureBoard.Domain.Entities;
 
 public class Flight
 {
-    public int Id { get; set; }
-    public int AirplaneId { get; set; }
-    public DateTime DepartureTime { get; set; }
+    public int Id { get; init; }
+    public int AirplaneId { get; init; }
+    public DateTime DepartureTime { get; init; }
     
     [JsonIgnore]
-    public Airplane? Airplane { get; set; }
+    public Airplane? Airplane { get; init; }
 }

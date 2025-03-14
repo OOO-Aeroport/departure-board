@@ -1,4 +1,4 @@
-namespace DepartureBoard.Domain.Repos;
+namespace DepartureBoard.Domain.Ports.Persistence;
 
 public interface IRepository<T>
 {

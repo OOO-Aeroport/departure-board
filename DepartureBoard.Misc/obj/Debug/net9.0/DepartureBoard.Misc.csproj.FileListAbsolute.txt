@@ -10,3 +10,4 @@ C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\D
 C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\refint\DepartureBoard.Misc.dll
 C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.pdb
 C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\ref\DepartureBoard.Misc.dll
+C:\Users\akhmy\Documents\Projects\Rider\DepartureBoard\DepartureBoard.Misc\obj\Debug\net9.0\DepartureBoard.Misc.csproj.AssemblyReference.cache

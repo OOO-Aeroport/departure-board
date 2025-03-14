@@ -1,14 +1,16 @@
+using DepartureBoard.Api;
 using DepartureBoard.Api.Middleware;
-using DepartureBoard.App;
-using DepartureBoard.App.Services;
+using DepartureBoard.App.Ports.Network;
+using DepartureBoard.App.Ports.Persistence;
+using DepartureBoard.App.Scenarios;
 using DepartureBoard.Domain.Entities;
-using DepartureBoard.Domain.Repos;
-using DepartureBoard.Infrastructure.ExternalApi;
+using DepartureBoard.Domain.Ports.Persistence;
+using DepartureBoard.Infrastructure.Adapters.Network;
+using DepartureBoard.Infrastructure.Adapters.Persistence.EntityFramework;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 using DepartureBoard.Infrastructure.Repos.EntityFramework;
 using DepartureBoard.Misc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging.Console;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,27 +40,38 @@ builder.Services.AddScoped<IAirplaneAndFlightUnitOfWork, EfAirplaneAndFlightUnit
 
 // Services configuration
 builder.Services.AddSingleton<TimeService>();
-builder.Services.AddScoped<FlightService>();
 
-// External API configuration
-builder.Services.AddTransient<TicketOfficeApi>();
-builder.Services.AddTransient<GroundHandlingApi>();
+// Scenarios configuration
+builder.Services.AddScoped<RegisterFlightScenario>();
+builder.Services.AddScoped<MarkAirplaneAsHandledScenario>();
+builder.Services.AddScoped<SendPassengersToBoardScenario>();
+
+// Clients configuration
+builder.Services.AddTransient<ITicketOfficeClient, TicketOfficeHttpClient>();
+builder.Services.AddTransient<IGroundHandlingClient, GroundHandlingHttpClient>();
+builder.Services.AddTransient<IBoardClient, BoardHttpClient>();
 
 // Buffers configuration
-builder.Services.AddSingleton<DtoBuffer<TicketOfficeApi>>();
-builder.Services.AddSingleton<DtoBuffer<GroundHandlingApi>>();
+builder.Services.AddSingleton<DtoBuffer<TicketOfficeHttpClient>>();
+builder.Services.AddSingleton<DtoBuffer<GroundHandlingHttpClient>>();
 
 // HttpClients configuration
     // Ticket office
 var ticketOfficeBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:TicketOfficeBaseUrl")
     ?? throw new Exception("TicketOfficeBaseUrl is missing");
-builder.Services.AddHttpClient<TicketOfficeApi>(client
+builder.Services.AddHttpClient<TicketOfficeHttpClient>(client
     => client.BaseAddress = new Uri(ticketOfficeBaseUrl));
     // Ground handling
 var groundHandlingBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:GroundHandlingBaseUrl")
     ?? throw new Exception("GroundHandlingBaseUrl is missing");
-builder.Services.AddHttpClient<GroundHandlingApi>(client
+builder.Services.AddHttpClient<GroundHandlingHttpClient>(client
     => client.BaseAddress = new Uri(groundHandlingBaseUrl));
+    // Board
+var boardBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:BoardBaseUrl")
+    ?? throw new Exception("BoardBaseUrl is missing");
+builder.Services.AddHttpClient<BoardHttpClient>(client
+    => client.BaseAddress = new Uri(boardBaseUrl));
+
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandler>();

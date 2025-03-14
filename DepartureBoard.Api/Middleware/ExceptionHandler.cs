@@ -13,9 +13,15 @@ public class ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> lo
         }
         catch (Exception ex)
         {
+            if (ex is HttpRequestException)
+            {
+                _logger.LogError("One of apis are unavailable right now. DTO buffers will be sent later");
+                return;
+            }
+
             _logger.LogError(ex, "({Now}) Request Failed: {Method} {Path}", DateTime.Now,
                 context.Request.Method, context.Request.Path);
-            
+
             context.Response.StatusCode = 500;
             context.Response.ContentType = "application/json";
 
@@ -25,7 +31,7 @@ public class ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> lo
                 message = ex.Message,
                 stackTrace = ex.StackTrace
             };
-            
+
             await context.Response.WriteAsJsonAsync(response);
         }
     }

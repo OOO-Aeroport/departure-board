@@ -1,9 +1,9 @@
-using DepartureBoard.App.Services;
+using DepartureBoard.App.Ports.Network;
+using DepartureBoard.App.Scenarios;
 using DepartureBoard.Domain.Entities;
-using DepartureBoard.Infrastructure.ExternalApi;
 using DepartureBoard.Misc;
 
-namespace DepartureBoard.Api.Middleware;
+namespace DepartureBoard.Api;
 
 public static class EndpointMapper
 {
@@ -25,41 +25,35 @@ public static class EndpointMapper
 
         app.MapGet("departure-board/time", (HttpContext context, TimeService timeService) =>
         {
-            var format = context.Request.Query.TryGetValue("days", out var temp)
+            /*var format = context.Request.Query.TryGetValue("days", out var temp)
                 && bool.TryParse(temp, out var days)
                 && days
                 ? "dd:HH:mm"
                 : "HH:mm";
 
-            return Results.Ok(timeService.Now.ToString(format));
+            return Results.Ok(timeService.Now.ToString(format));*/
+            return Results.Ok(timeService.Now);
         });
 
-        app.MapPost("departure-board/planes", async (TicketOfficeApi ticketOfficeApi,
-            GroundHandlingApi groundHandlingApi, FlightService flightService,
+        app.MapPost("departure-board/planes", async (ITicketOfficeClient ticketOffice,
+            IGroundHandlingClient groundHandling, RegisterFlightScenario flightService,
             TimeService timeService, Airplane airplane) =>
         {
             var departureTime = timeService.Now + TimeSpan.FromHours(4);
-            await flightService.RegisterFlight(airplane, departureTime);
-            await ticketOfficeApi.Post(new
-            {
-                airplane.Flight!.Id,
-                departureTime,
-                airplane.SeatsAvailable,
-                airplane.BaggageAvailable
-            });
-
-            /*await groundHandlingApi.Post(new
-            {
-                airplane.Id,
-                airplane.Gate,
-                airplane.CurrentFuel,
-                airplane.MaxFuel
-            });*/
             
+            await flightService.Invoke(airplane, departureTime,
+                ticketOffice, groundHandling);
+
             return Results.Ok();
         });
 
-        app.MapPatch("departure-board/planes/handled", async (int id, AirplaneService service)
-            => await service.MarkAsHandledAsync(id));
+        app.MapPost("departure-board/planes/handled/{id}", (int id, MarkAirplaneAsHandledScenario service)
+            => service.Invoke(id));
+
+        app.MapPost("departure-board/flights/passengers", (int flightId, List<object> passengers,
+            ILogger<Program> logger, SendPassengersToBoardScenario scenario) =>
+        {
+            _ = scenario.Invoke(flightId, passengers);
+        });
     }
 }

@@ -7,7 +7,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
     public DbSet<Airplane> Airplanes { get; set; }
     public DbSet<Flight> Flights { get; set; }
-
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -15,10 +15,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         builder.Entity<Flight>()
             .HasOne(f => f.Airplane)
             .WithOne(a => a.Flight)
-            .HasForeignKey<Flight>(f => f.AirplaneId)
-            .OnDelete(DeleteBehavior.Cascade);
-        
-        builder.Entity<Flight>().ToTable("flights");
-        builder.Entity<Airplane>().ToTable("planes");
+            .HasForeignKey<Flight>(f => f.AirplaneId);
     }
 }

@@ -1,5 +1,5 @@
 using DepartureBoard.Domain.Entities;
-using DepartureBoard.Domain.Repos;
+using DepartureBoard.Domain.Ports.Persistence;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 
 namespace DepartureBoard.Infrastructure.Repos.EntityFramework;

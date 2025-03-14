@@ -1,13 +1,13 @@
 using DepartureBoard.Domain.Entities;
-using DepartureBoard.Domain.Repos;
+using DepartureBoard.Domain.Ports.Persistence;
 
-namespace DepartureBoard.App.Services;
+namespace DepartureBoard.App.Scenarios;
 
-public class AirplaneService(IRepository<Airplane> airplaneRepository)
+public class MarkAirplaneAsHandledScenario(IRepository<Airplane> airplaneRepository)
 {
     private readonly IRepository<Airplane> _airplaneRepository = airplaneRepository;
 
-    public async Task MarkAsHandledAsync(int id)
+    public async Task Invoke(int id)
     {
         var airplane = await _airplaneRepository.GetByIdAsync(id);
         airplane.Handled = true;

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace DepartureBoard.App.Services;
+namespace DepartureBoard.Misc;
 
 public class TimeService(ILogger<TimeService> logger) : IDisposable
 {

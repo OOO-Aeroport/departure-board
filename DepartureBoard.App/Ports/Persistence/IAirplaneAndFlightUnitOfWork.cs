@@ -1,6 +1,6 @@
 using DepartureBoard.Domain.Entities;
 
-namespace DepartureBoard.App;
+namespace DepartureBoard.App.Ports.Persistence;
 
 public interface IAirplaneAndFlightUnitOfWork
 {

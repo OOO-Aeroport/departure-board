@@ -1,9 +1,9 @@
-using DepartureBoard.App;
+using DepartureBoard.App.Ports.Persistence;
 using DepartureBoard.Domain.Entities;
-using DepartureBoard.Domain.Repos;
+using DepartureBoard.Domain.Ports.Persistence;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 
-namespace DepartureBoard.Infrastructure.Repos.EntityFramework;
+namespace DepartureBoard.Infrastructure.Adapters.Persistence.EntityFramework;
 
 public class EfAirplaneAndFlightUnitOfWork(AppDbContext context, IRepository<Airplane> airplaneRepository,
     IRepository<Flight> flightRepository) : IAirplaneAndFlightUnitOfWork
