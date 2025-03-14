@@ -17,6 +17,7 @@
     <ItemGroup>
       <ProjectReference Include="..\DepartureBoard.App\DepartureBoard.App.csproj" />
       <ProjectReference Include="..\DepartureBoard.Domain\DepartureBoard.Domain.csproj" />
+      <ProjectReference Include="..\DepartureBoard.Misc\DepartureBoard.Misc.csproj" />
     </ItemGroup>
 
 </Project>

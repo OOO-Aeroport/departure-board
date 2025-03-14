@@ -7,10 +7,10 @@ public class RequestLogger(RequestDelegate next, ILogger<RequestLogger> logger)
 
     public async Task InvokeAsync(HttpContext context)
     {
-        _logger.LogInformation("Request: {Method} {Path}", context.Request.Method, context.Request.Path);
+        _logger.LogInformation("({Now}) Request: {Method} {Path}", DateTime.Now, context.Request.Method, context.Request.Path);
         
         await _next(context);
         
-        _logger.LogInformation("Request Completed: {Method} {Path}", context.Request.Method, context.Request.Path);
+        _logger.LogInformation("({Now}) Request Completed: {Method} {Path}", DateTime.Now, context.Request.Method, context.Request.Path);
     }
 }

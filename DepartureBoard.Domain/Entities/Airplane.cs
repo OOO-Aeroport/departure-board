@@ -7,22 +7,20 @@ public class Airplane
     [JsonPropertyName("id")]
     public int Id { get; set; }
     
-    [JsonPropertyName("gate")]
-    public int Gate { get; set; }
-    
-    [JsonPropertyName("baggageAvailable")]
+    [JsonPropertyName("baggage_available")]
     public int BaggageAvailable { get; set; }
     
-    [JsonPropertyName("seatsAvailable")]
+    [JsonPropertyName("seats_available")]
     public int SeatsAvailable { get; set; }
     
-    [JsonPropertyName("currentFuel")]
+    [JsonPropertyName("current_fuel")]
     public int CurrentFuel { get; set; }
     
-    [JsonPropertyName("maxFuel")]
+    [JsonPropertyName("max_fuel")]
     public int MaxFuel { get; set; }
     
     public bool Handled { get; set; }
     
-    public Flight Flight { get; set; }
+    [JsonIgnore]
+    public Flight? Flight { get; set; }
 }

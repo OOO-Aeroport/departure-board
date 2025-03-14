@@ -1,6 +1,7 @@
 using DepartureBoard.App.Services;
 using DepartureBoard.Domain.Entities;
 using DepartureBoard.Infrastructure.ExternalApi;
+using DepartureBoard.Misc;
 
 namespace DepartureBoard.Api.Middleware;
 
@@ -32,7 +33,7 @@ public static class EndpointMapper
 
             return Results.Ok(timeService.Now.ToString(format));
         });
-        
+
         app.MapPost("departure-board/planes", async (TicketOfficeApi ticketOfficeApi,
             GroundHandlingApi groundHandlingApi, FlightService flightService,
             TimeService timeService, Airplane airplane) =>
@@ -41,19 +42,19 @@ public static class EndpointMapper
             await flightService.RegisterFlight(airplane, departureTime);
             await ticketOfficeApi.Post(new
             {
-                airplane.Flight.Id,
+                airplane.Flight!.Id,
                 departureTime,
                 airplane.SeatsAvailable,
                 airplane.BaggageAvailable
             });
 
-            await groundHandlingApi.Post(new
+            /*await groundHandlingApi.Post(new
             {
                 airplane.Id,
                 airplane.Gate,
                 airplane.CurrentFuel,
                 airplane.MaxFuel
-            });
+            });*/
             
             return Results.Ok();
         });

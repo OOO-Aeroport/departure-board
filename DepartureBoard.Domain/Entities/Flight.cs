@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace DepartureBoard.Domain.Entities;
 
 public class Flight
@@ -6,5 +8,6 @@ public class Flight
     public int AirplaneId { get; set; }
     public DateTime DepartureTime { get; set; }
     
-    public Airplane Airplane { get; set; }
+    [JsonIgnore]
+    public Airplane? Airplane { get; set; }
 }

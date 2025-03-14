@@ -13,7 +13,8 @@ public class ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> lo
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Request Failed: {Method} {Path}", context.Request.Method, context.Request.Path);
+            _logger.LogError(ex, "({Now}) Request Failed: {Method} {Path}", DateTime.Now,
+                context.Request.Method, context.Request.Path);
             
             context.Response.StatusCode = 500;
             context.Response.ContentType = "application/json";

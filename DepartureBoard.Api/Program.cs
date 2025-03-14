@@ -6,7 +6,9 @@ using DepartureBoard.Domain.Repos;
 using DepartureBoard.Infrastructure.ExternalApi;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 using DepartureBoard.Infrastructure.Repos.EntityFramework;
+using DepartureBoard.Misc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Console;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +16,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Logging Configuration
 builder.Logging
     .ClearProviders()
-    .AddConsole();
+    .AddSimpleConsole(options =>
+    {
+        options.IncludeScopes = false;
+        options.SingleLine = true;
+    });
 
 // Swagger configuration
 builder.Services.AddEndpointsApiExplorer();
@@ -38,14 +44,16 @@ builder.Services.AddScoped<FlightService>();
 builder.Services.AddTransient<TicketOfficeApi>();
 builder.Services.AddTransient<GroundHandlingApi>();
 
+// Buffers configuration
+builder.Services.AddSingleton<DtoBuffer<TicketOfficeApi>>();
+builder.Services.AddSingleton<DtoBuffer<GroundHandlingApi>>();
+
 // HttpClients configuration
-    
     // Ticket office
 var ticketOfficeBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:TicketOfficeBaseUrl")
     ?? throw new Exception("TicketOfficeBaseUrl is missing");
 builder.Services.AddHttpClient<TicketOfficeApi>(client
     => client.BaseAddress = new Uri(ticketOfficeBaseUrl));
-
     // Ground handling
 var groundHandlingBaseUrl = builder.Configuration.GetValue<string>("ExternalApiSettings:GroundHandlingBaseUrl")
     ?? throw new Exception("GroundHandlingBaseUrl is missing");

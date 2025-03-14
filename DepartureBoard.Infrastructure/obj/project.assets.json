@@ -1407,6 +1407,16 @@
         "runtime": {
           "bin/placeholder/DepartureBoard.Domain.dll": {}
         }
+      },
+      "DepartureBoard.Misc/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/DepartureBoard.Misc.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DepartureBoard.Misc.dll": {}
+        }
       }
     }
   },
@@ -3889,12 +3899,18 @@
       "type": "project",
       "path": "../DepartureBoard.Domain/DepartureBoard.Domain.csproj",
       "msbuildProject": "../DepartureBoard.Domain/DepartureBoard.Domain.csproj"
+    },
+    "DepartureBoard.Misc/1.0.0": {
+      "type": "project",
+      "path": "../DepartureBoard.Misc/DepartureBoard.Misc.csproj",
+      "msbuildProject": "../DepartureBoard.Misc/DepartureBoard.Misc.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "DepartureBoard.App >= 1.0.0",
       "DepartureBoard.Domain >= 1.0.0",
+      "DepartureBoard.Misc >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.2",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.3"
     ]
@@ -3936,6 +3952,9 @@
             },
             "C:\\Users\\akhmy\\Documents\\Projects\\Rider\\DepartureBoard\\DepartureBoard.Domain\\DepartureBoard.Domain.csproj": {
               "projectPath": "C:\\Users\\akhmy\\Documents\\Projects\\Rider\\DepartureBoard\\DepartureBoard.Domain\\DepartureBoard.Domain.csproj"
+            },
+            "C:\\Users\\akhmy\\Documents\\Projects\\Rider\\DepartureBoard\\DepartureBoard.Misc\\DepartureBoard.Misc.csproj": {
+              "projectPath": "C:\\Users\\akhmy\\Documents\\Projects\\Rider\\DepartureBoard\\DepartureBoard.Misc\\DepartureBoard.Misc.csproj"
             }
           }
         }
