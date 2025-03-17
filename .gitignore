@@ -1,0 +1,28 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]ebug-AnyCPU/
+[Dd]ebug-x86/
+[Dd]ebug-x64/
+[Dd]ebug-windows/
+[Dd]ebug-netcoreapp3.1/
+[Dd]ebug-net5.0/
+[Dd]ebug-net6.0/
+
+# User-specific files
+.vs/
+.idea/
+.vscode/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Node.js dependencies
+node_modules/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
