@@ -1,7 +1,7 @@
-using DepartureBoard.Api.Factories;
 using DepartureBoard.Api.Options;
+using DepartureBoard.Api.Postgres;
 using DepartureBoard.Application.Ports.Network;
-using DepartureBoard.Application.Ports.Network.Factories;
+using DepartureBoard.Application.Ports;
 using DepartureBoard.Application.Ports.Persistence;
 using DepartureBoard.Application.Services;
 using DepartureBoard.Application.UseCases;
@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // Client factories registration
-builder.Services.AddSingleton<ICheckInClientFactory, CheckInClientFactory>();
+builder.Services.AddSingleton<IServiceLocator, IServiceLocator>();
 
 // Client options configuration
 builder.Services.Configure<TicketOfficeClientOptions>(
@@ -64,12 +64,22 @@ builder.Services.AddScoped<IFlightRepository, EfFlightRepository>();
 builder.Services.AddScoped<IAirplaneFlightUnitOfWork, EfAirplaneFlightUnitOfWork>();
 
 // Use cases registration
-builder.Services.AddTransient<RegisterFlightUseCase>();
+builder.Services.AddTransient<CreateFlightUseCase>();
 builder.Services.AddTransient<ScheduleCheckInUseCase>();
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+if (args.Contains("--truncate"))
+{
+    using var scope = app.Services.CreateScope();
+    
+    var context = scope.ServiceProvider.GetRequiredService<AirplaneFlightDbContext>();
+    var truncator = new PostgresTruncator(context);
+    truncator.Truncate();
+    throw new Exception("Start project in Run configuration");
+}
 
 app.UseSwagger();
 app.UseSwaggerUI(options =>

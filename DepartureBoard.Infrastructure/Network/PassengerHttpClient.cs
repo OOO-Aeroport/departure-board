@@ -10,6 +10,12 @@ public class PassengerHttpClient(HttpClient client) : IPassengerClient
     private readonly JsonSerializerOptions _options = new JsonSerializerOptions
         { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
     
-    public async Task Post(object dto)
+    public async Task NotifyFlightCreated(object dto)
         => await _client.PostAsJsonAsync("", dto, _options);
+
+    public async Task NotifyCheckInStart(int flightId, DateTime checkInEndTime)
+        => await _client.PostAsJsonAsync("", flightId, _options);
+
+    public async Task NotifyCheckInEnd(int flightId)
+        => await _client.PostAsJsonAsync("", flightId, _options);
 }

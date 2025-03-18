@@ -1,7 +1,9 @@
+using DepartureBoard.Application.Dto;
+
 namespace DepartureBoard.Application.Ports.Network;
 
 public interface ICheckInClient
 {
-    Task NotifyRegistrationStart(int flightId, DateTime checkInEndTime);
-    Task NotifyRegistrationEnd(int flightId);
+    Task NotifyCheckInStart(int flightId, DateTime checkInEndTime);
+    Task NotifyCheckInEnd(int flightId);
 }

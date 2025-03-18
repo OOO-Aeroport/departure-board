@@ -6,7 +6,7 @@ using DepartureBoard.Domain.Entities;
 
 namespace DepartureBoard.Application.UseCases;
 
-public class RegisterFlightUseCase(IAirplaneFlightUnitOfWork unitOfWork,
+public class CreateFlightUseCase(IAirplaneFlightUnitOfWork unitOfWork,
     ITicketOfficeClient ticketOffice, IPassengerClient passenger,
     TimeService timeService)
 {
@@ -18,9 +18,11 @@ public class RegisterFlightUseCase(IAirplaneFlightUnitOfWork unitOfWork,
     {
         await _unitOfWork.AddAirplaneAndFlightAsync(airplane, timeService.Now);
         
-        var task1 = _ticketOffice.Post(new FlightDto(airplane.Flight!.Id, airplane.Id,
+        var flightId = airplane.Flight!.Id;
+        
+        var task1 = _ticketOffice.Post(new FlightDto(flightId, airplane.Id,
             airplane.SeatsAvailable, airplane.BaggageAvailable));
-        var task2 = _passenger.Post(new { airplane.Id });
+        var task2 = _passenger.NotifyFlightCreated(new { flightId, airplane.Id });
 
         await Task.WhenAll(task1, task2);
     }
