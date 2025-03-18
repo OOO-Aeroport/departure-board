@@ -1,3 +1,5 @@
+using DepartureBoard.Api;
+using DepartureBoard.Api.Middleware;
 using DepartureBoard.Api.Options;
 using DepartureBoard.Api.Postgres;
 using DepartureBoard.Application.Ports.Network;
@@ -20,7 +22,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // Client factories registration
-builder.Services.AddSingleton<IServiceLocator, IServiceLocator>();
+builder.Services.AddSingleton<IServiceLocator, ServiceLocator>();
 
 // Client options configuration
 builder.Services.Configure<TicketOfficeClientOptions>(
@@ -92,5 +94,7 @@ app.UseSwaggerUI(options =>
 var timeService = app.Services.GetRequiredService<TimeService>();
 _ = Task.Run(() => timeService.Run());
 
+app.UseMiddleware<ExceptionHandler>();
+app.UseMiddleware<RequestLogger>();
 app.MapControllers();
 app.Run();
