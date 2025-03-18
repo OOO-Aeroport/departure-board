@@ -10,10 +10,16 @@ using DepartureBoard.Application.UseCases;
 using DepartureBoard.Infrastructure.Network;
 using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Console;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging
+    .ClearProviders()
+    .AddConsole(options => options.FormatterName = "custom")
+    .AddConsoleFormatter<CustomFormatter, ConsoleFormatterOptions>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

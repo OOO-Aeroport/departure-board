@@ -11,11 +11,11 @@ public class PassengerHttpClient(HttpClient client) : IPassengerClient
         { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
     
     public async Task NotifyFlightCreated(object dto)
-        => await _client.PostAsJsonAsync("", dto, _options);
+        => await _client.PostAsJsonAsync("available-flight", dto, _options);
 
     public async Task NotifyCheckInStart(int flightId, DateTime checkInEndTime)
-        => await _client.PostAsJsonAsync("", flightId, _options);
+        => await _client.PostAsJsonAsync($"check-in/start/{flightId}", checkInEndTime, _options);
 
     public async Task NotifyCheckInEnd(int flightId)
-        => await _client.PostAsJsonAsync("", flightId, _options);
+        => await _client.PostAsync($"check-in/end/{flightId}", null);
 }

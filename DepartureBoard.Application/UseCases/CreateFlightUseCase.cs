@@ -1,4 +1,3 @@
-using DepartureBoard.Application.Dto;
 using DepartureBoard.Application.Ports.Network;
 using DepartureBoard.Application.Ports.Persistence;
 using DepartureBoard.Application.Services;
@@ -17,12 +16,21 @@ public class CreateFlightUseCase(IAirplaneFlightUnitOfWork unitOfWork,
     public async Task InvokeAsync(Airplane airplane)
     {
         await _unitOfWork.AddAirplaneAndFlightAsync(airplane, timeService.Now);
+
+        if (airplane.Flight == null) throw new NullReferenceException();
         
-        var flightId = airplane.Flight!.Id;
-        
-        var task1 = _ticketOffice.Post(new FlightDto(flightId, airplane.Id,
-            airplane.SeatsAvailable, airplane.BaggageAvailable));
-        var task2 = _passenger.NotifyFlightCreated(new { flightId, airplane.Id });
+        var task1 = _ticketOffice.NotifyFlightCreated(
+            new
+            {
+                flightId = airplane.Flight.Id, airplaneId = airplane.Id,
+                airplane.SeatsAvailable, airplane.BaggageAvailable
+            });
+        var task2 = _passenger.NotifyFlightCreated(
+            new
+            {
+                flightId = airplane.Flight.Id,
+                airplaneId = airplane.Id
+            });
 
         await Task.WhenAll(task1, task2);
     }

@@ -1,4 +1,5 @@
 using DepartureBoard.Application.Services;
+using DepartureBoard.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DepartureBoard.Api.Controllers;
@@ -9,7 +10,27 @@ public class TimeController(TimeService timeService) : ControllerBase
 {
     [HttpGet("now")]
     public IActionResult Get()
+        => Ok(timeService.Now);
+
+    [HttpGet("timeout")]
+    public async Task<IActionResult> Timeout()
     {
+        if (!HttpContext.Request.Query.TryGetValue("timeout", out var temp) ||
+            !int.TryParse(temp, out var timeout))
+        {
+            return BadRequest("invalid timeout");
+        }
+
+        var afterTimeout = timeService.Now.AddSeconds(timeout);
+
+        await Task.Run(async () =>
+        {
+            while (timeService.Now <= afterTimeout)
+            {
+                await Task.Delay(TimeSpan.FromMilliseconds((int)Constants.TickInMilliseconds));
+            }
+        });
+        
         return Ok(timeService.Now);
     }
 
@@ -19,7 +40,7 @@ public class TimeController(TimeService timeService) : ControllerBase
         if (!HttpContext.Request.Query.TryGetValue("tps", out var temp) ||
             !int.TryParse(temp, out var tps))
         {
-            return BadRequest();
+            return BadRequest("invalid tps");
         }
         
         timeService.TicksPerSecond = tps;

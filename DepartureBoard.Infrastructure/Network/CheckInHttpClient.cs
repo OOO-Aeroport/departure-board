@@ -1,6 +1,5 @@
 using System.Net.Http.Json;
 using System.Text.Json;
-using DepartureBoard.Application.Dto;
 using DepartureBoard.Application.Ports.Network;
 
 namespace DepartureBoard.Infrastructure.Network;
