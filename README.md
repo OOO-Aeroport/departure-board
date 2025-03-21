@@ -12,7 +12,7 @@
 
 Формат запроса времени:
 
-![Get Time]((https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img4.jpg))
+![Get Time](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img4.jpg)
 
 Формат запроса таймаута:
 
