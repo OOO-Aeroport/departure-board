@@ -62,5 +62,4 @@
 
 ### Ссылки
 
-- [Репозиторий GitHub](https://github.com/OOO-Aeroport/departure-board)
-- [Документация API](https://github.com/OOO-Aeroport/departure-board/docs)
+- [Полная версия документации](https://github.com/OOO-Aeroport/departure-board/Docs/DOCS.md)
