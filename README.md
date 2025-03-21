@@ -1,8 +1,11 @@
 Все эндпоинты:
-![swagger](https://github.com/OOO-Aeroport/departure-board/blob/master/dep_board_swagger.jpg)
+
+![Whole API](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img1.jpg)
 
 Формат сообщения о создании самолета:
-![post-airplane-schema](https://github.com/OOO-Aeroport/departure-board/blob/master/post_airplane_schema.jpg)
+
+![Post Airplane](https://github.com/OOO-Aeroport/departure-board/blob/master/img2.jpg)
 
 Формат сообщения о готовности самолета к регистрации:
-![post-airplane-ready](https://github.com/OOO-Aeroport/departure-board/blob/master/post_airplane_ready.jpg)
+
+![Post Airplane Ready](https://github.com/OOO-Aeroport/departure-board/blob/master/img3.jpg)
