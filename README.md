@@ -21,3 +21,6 @@
 Формат запроса изменения количества секунд в тик:
 
 ![Put_SPT](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img6.jpg)
+
+Настольное приложение для управления временем:
+![Desktop Application](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img6.jpg)
