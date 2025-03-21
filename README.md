@@ -6,37 +6,37 @@
 
 ---
 
-### Все эндпоинты
+### Все эндпоинты:
 
 ![Whole API](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img1.jpg)
 
 ---
 
-### Формат сообщения о создании самолета
+### Формат сообщения о создании самолета:
 
 ![Post Airplane](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img2.jpg)
 
 ---
 
-### Формат сообщения о готовности самолета к регистрации
+### Формат сообщения о готовности самолета к регистрации:
 
 ![Post Airplane Ready](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img3.jpg)
 
 ---
 
-### Формат запроса времени
+### Формат запроса времени:
 
 ![Get Time](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img4.jpg)
 
 ---
 
-### Формат запроса таймаута
+### Формат запроса таймаута:
 
 ![Get Timeout](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img5.jpg)
 
 ---
 
-### Формат запроса изменения количества секунд в тик
+### Формат запроса изменения количества секунд в тик (SPT):
 
 ![Put SPT](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img6.jpg)
 
