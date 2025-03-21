@@ -27,23 +27,23 @@ public class TimeController(TimeService timeService) : ControllerBase
         {
             while (timeService.Now <= afterTimeout)
             {
-                await Task.Delay(TimeSpan.FromMilliseconds((int)Constants.TickInMilliseconds));
+                await Task.Delay(TimeSpan.FromMilliseconds((int)Constants.TickInMs));
             }
         });
         
-        return Ok(timeService.Now);
+        return Ok();
     }
 
-    [HttpPut("tps")]
-    public IActionResult SetTicksPerSecond()
+    [HttpPut("spt")]
+    public IActionResult SetSecondsPerTick()
     {
-        if (!HttpContext.Request.Query.TryGetValue("tps", out var temp) ||
-            !int.TryParse(temp, out var tps))
+        if (!HttpContext.Request.Query.TryGetValue("spt", out var temp) ||
+            !int.TryParse(temp, out var spt))
         {
-            return BadRequest("invalid tps");
+            return BadRequest("invalid spt");
         }
         
-        timeService.TicksPerSecond = tps;
+        timeService.SecondsPerTick = spt;
         return Ok();
     }
 }

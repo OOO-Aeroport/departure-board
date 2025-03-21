@@ -18,7 +18,7 @@ public class ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> lo
             {
                 StatusCode = 500,
                 Error = ex.GetType().Name,
-                Message = ex.Message,
+                ex.Message,
             };
             
             context.Response.ContentType = "application/json";

@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepartureBoard.Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepartureBoard.Infrastructure", "DepartureBoard.Infrastructure\DepartureBoard.Infrastructure.csproj", "{519E7149-BA79-49CC-BAA9-8BD15FE64203}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepartureBoard.Desktop", "DepartureBoard.Desktop\DepartureBoard.Desktop.csproj", "{D8B940EB-94EC-4A81-876A-B792C2ED1211}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{519E7149-BA79-49CC-BAA9-8BD15FE64203}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{519E7149-BA79-49CC-BAA9-8BD15FE64203}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{519E7149-BA79-49CC-BAA9-8BD15FE64203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B940EB-94EC-4A81-876A-B792C2ED1211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B940EB-94EC-4A81-876A-B792C2ED1211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B940EB-94EC-4A81-876A-B792C2ED1211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B940EB-94EC-4A81-876A-B792C2ED1211}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

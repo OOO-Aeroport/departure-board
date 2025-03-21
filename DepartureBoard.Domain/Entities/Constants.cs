@@ -2,6 +2,7 @@ namespace DepartureBoard.Domain.Entities;
 
 public enum Constants
 {
-    TickInMilliseconds = 500,
+    TickInMs = 100,
+    SecondsPerTick = 10,
     CheckInMinuteDuration = 120
 }

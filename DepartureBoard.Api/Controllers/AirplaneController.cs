@@ -6,10 +6,9 @@ namespace DepartureBoard.Api.Controllers;
 
 [ApiController]
 [Route("dep-board/api/v1/airplanes")]
-public class AirplaneController(ILogger<AirplaneController> logger,
-    CreateFlightUseCase createFlight, ScheduleCheckInUseCase scheduleCheckIn) : ControllerBase
+public class AirplaneController(CreateFlightUseCase createFlight,
+    ScheduleCheckInUseCase scheduleCheckIn) : ControllerBase
 {
-    private readonly ILogger<AirplaneController> _logger = logger;
     private readonly CreateFlightUseCase _createFlight = createFlight;
     private readonly ScheduleCheckInUseCase _scheduleCheckIn = scheduleCheckIn;
     

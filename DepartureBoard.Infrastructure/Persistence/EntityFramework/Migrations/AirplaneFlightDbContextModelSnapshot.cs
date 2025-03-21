@@ -31,16 +31,12 @@ namespace DepartureBoard.Infrastructure.Persistence.EntityFramework.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BaggageAvailable")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CurrentFuel")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MaxFuel")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Relational:JsonPropertyName", "baggage_available");
 
                     b.Property<int>("SeatsAvailable")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Relational:JsonPropertyName", "seats_available");
 
                     b.HasKey("Id");
 
@@ -82,8 +78,7 @@ namespace DepartureBoard.Infrastructure.Persistence.EntityFramework.Migrations
 
             modelBuilder.Entity("DepartureBoard.Domain.Entities.Airplane", b =>
                 {
-                    b.Navigation("Flight")
-                        .IsRequired();
+                    b.Navigation("Flight");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,22 +7,20 @@ public class TimeService : IDisposable
     private long _ticks;
     private Timer? _timer;
 
-    public int TicksPerSecond { get; set; } = 30;
+    public int SecondsPerTick { get; set; } = (int)Constants.SecondsPerTick;
     public DateTime Now => new DateTime(Interlocked.Read(ref _ticks));
-
+    
     private bool _disposed;
     
     public void Run()
     {
         _ticks = DateTime.Now.Ticks;
         _timer = new Timer(UpdateTime, null, TimeSpan.Zero, 
-            TimeSpan.FromMilliseconds((int)Constants.TickInMilliseconds));
+            TimeSpan.FromMilliseconds((int)Constants.TickInMs));
     }
 
     private void UpdateTime(object? state)
-    {
-        Interlocked.Add(ref _ticks, TimeSpan.TicksPerSecond * TicksPerSecond);
-    }
+        => Interlocked.Add(ref _ticks, TimeSpan.TicksPerSecond * SecondsPerTick);
 
     public void Dispose()
     {

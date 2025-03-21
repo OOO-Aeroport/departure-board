@@ -5,10 +5,10 @@ namespace DepartureBoard.Domain.Entities;
 public class Airplane
 {
     public required int Id { get; init; }
+    [JsonPropertyName("baggage_available")]
     public required int BaggageAvailable { get; init; }
+    [JsonPropertyName("seats_available")]
     public required int SeatsAvailable { get; init; }
-    public required int CurrentFuel { get; init; }
-    public required int MaxFuel { get; init; }
     
     // Nav-prop
     [JsonIgnore]

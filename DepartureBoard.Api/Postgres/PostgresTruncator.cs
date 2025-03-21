@@ -1,4 +1,3 @@
-using DepartureBoard.Infrastructure.Persistence.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
 namespace DepartureBoard.Api.Postgres;

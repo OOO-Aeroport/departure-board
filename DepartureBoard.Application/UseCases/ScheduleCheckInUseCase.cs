@@ -28,7 +28,7 @@ public class ScheduleCheckInUseCase(IFlightRepository flightRepository,
         {
             while (_timeService.Now <= checkInEndTime)
             {
-                await Task.Delay(TimeSpan.FromMilliseconds((int)Constants.TickInMilliseconds));
+                await Task.Delay(TimeSpan.FromMilliseconds((int)Constants.TickInMs));
             }
 
             var checkInRenewed = factory.Require<ICheckInClient>() ?? throw new NullReferenceException();

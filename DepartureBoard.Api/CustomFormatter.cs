@@ -1,11 +1,9 @@
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Logging.Console;
-using Microsoft.Extensions.Options;
 
 namespace DepartureBoard.Api;
 
-public class CustomFormatter(IOptionsMonitor<ConsoleFormatterOptions> options)
-    : ConsoleFormatter("custom")
+public class CustomFormatter() : ConsoleFormatter("custom")
 {
     private struct AnsiColors
     {
