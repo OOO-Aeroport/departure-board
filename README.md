@@ -62,4 +62,4 @@
 
 ### Ссылки
 
-- [Полная версия документации](https://github.com/OOO-Aeroport/departure-board/Docs/DOCS.md)
+- [Полная версия документации](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/DOCS.md)
