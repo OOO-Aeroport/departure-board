@@ -9,6 +9,7 @@
 3. **Оповещение сервисов "Пассажир" и "Касса"** о начале регистрации на рейс (по сигналу от сервиса "Управление наземным обслуживанием").
 4. **Ожидание заданного интервала модельного времени** после начала регистрации.
 5. **Уведомление сервисов "Пассажир" и "Касса"** о завершении регистрации.
+6. **Предоставление текущего модельного времени.
 
 ## 2. Архитектура и зависимости
 
@@ -100,44 +101,17 @@ public enum Constants
 
 ## 4. API
 
-### **4.1 Создание рейса**
-**`POST /api/flights`**  
-Создает новый рейс на основе переданного самолета.
-
-#### **Запрос:**
-```json
-{
-  "airplaneId": "12345",
-  "departureTime": "2025-04-10T14:30:00Z"
-}
-```
-
-#### **Ответ:**
-```json
-{
-  "flightId": "67890",
-  "status": "Created"
-}
-```
-
-### **4.2 Уведомление о начале регистрации**
-**`POST /api/flights/{flightId}/check-in/start`**
-
-### **4.3 Уведомление о завершении регистрации**
-**`POST /api/flights/{flightId}/check-in/end`**
+[Документация API](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/DOCS.md)
 
 ## 5. Настройки
 
 ### **Конфигурация подключения к БД**
-Файл: `appsettings.json`
+Файл: `appsettings.json` (DepartureBoard.Api)
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Database=departure_board;Username=admin;Password=secret"
+    "DefaultConnection": "Host=localhost;Database=dep_board;Username=dep_board_admin;Password=samolet"
   }
 }
 ```
-
----
-Документация оформлена для удобства восприятия и содержит все ключевые аспекты работы сервиса "Табло".
 
