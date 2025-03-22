@@ -64,6 +64,9 @@ public enum Constants
 - **Службу времени** для управления модельным временем;
 - **Порты (абстракции)** для взаимодействия с базами данных и другими сервисами.
 
+#### **Зависимости:**
+- `DepartureBoard.Domain`
+
 ### **2.3 DepartureBoard.Infrastructure**
 Проект, включающий:
 - **Адаптеры (имплементации) портов** из `DepartureBoard.Application`;
@@ -71,6 +74,8 @@ public enum Constants
 
 #### **Зависимости:**
 - `Npgsql.EntityFrameworkCore.PostgreSQL` **(9.0.4)** - поддержка PostgreSQL в Entity Framework Core.
+- `DepartureBoard.Domain`
+- `DepartureBoard.Application`
 
 ### **2.4 DepartureBoard.Api**
 Этот проект реализует **API сервиса**, включая:
@@ -81,6 +86,9 @@ public enum Constants
 #### **Зависимости:**
 - `Microsoft.EntityFrameworkCore.Design` **(9.0.3)** - инструменты для работы с EF Core.
 - `Swashbuckle.AspNetCore` **(7.3.1)** - генерация Swagger-документации.
+- `DepartureBoard.Domain`
+- `DepartureBoard.Application`
+- `DepartureBoard.Infrastructure`
 
 ### **2.5 DepartureBoard.Desktop**
 Простое **WPF-приложение** для управления модельным временем.
