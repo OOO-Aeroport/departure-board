@@ -101,7 +101,7 @@ public enum Constants
 
 ## 4. API
 
-[Документация API](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/DOCS.md)
+[Документация API](https://github.com/OOO-Aeroport/departure-board/edit/master/README.md)
 
 ## 5. Настройки
 
