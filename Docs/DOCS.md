@@ -115,7 +115,7 @@ public enum Constants
 }
 ```
 
-Для создания базы данных **обновитесь до миграции "ReduceAirplane"** (ef database update).
+Для создания актуальной базы данных **обновитесь до миграции "ReduceAirplane"** (ef database update).
 
 ## 6. Конфигурации запуска
 
