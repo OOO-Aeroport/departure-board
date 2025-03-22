@@ -8,7 +8,7 @@ public class TimeService : IDisposable
     private Timer? _timer;
 
     public int SecondsPerTick { get; set; } = (int)Constants.SecondsPerTick;
-    public DateTime Now => new DateTime(Interlocked.Read(ref _ticks));
+    public DateTime Now => new(Interlocked.Read(ref _ticks));
     
     private bool _disposed;
     

@@ -1,6 +1,6 @@
 using System.Windows.Input;
 
-namespace DepartureBoard.Desktop;
+namespace DepartureBoard.Desktop.Commands;
 
 public class RelayCommand(Func<Task> execute, Func<bool>? canExecute = null) : ICommand
 {

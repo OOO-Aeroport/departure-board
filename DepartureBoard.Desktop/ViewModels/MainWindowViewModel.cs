@@ -1,7 +1,8 @@
 using System.ComponentModel;
 using System.Windows.Input;
+using DepartureBoard.Desktop.Commands;
 
-namespace DepartureBoard.Desktop;
+namespace DepartureBoard.Desktop.ViewModels;
 
 public class MainWindowViewModel : INotifyPropertyChanged
 {

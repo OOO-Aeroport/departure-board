@@ -9,20 +9,17 @@ namespace DepartureBoard.Api.Controllers;
 public class AirplaneController(CreateFlightUseCase createFlight,
     ScheduleCheckInUseCase scheduleCheckIn) : ControllerBase
 {
-    private readonly CreateFlightUseCase _createFlight = createFlight;
-    private readonly ScheduleCheckInUseCase _scheduleCheckIn = scheduleCheckIn;
-    
     [HttpPost]
     public async Task<IActionResult> RegisterFlight(Airplane airplane)
     {
-        await _createFlight.InvokeAsync(airplane);
+        await createFlight.InvokeAsync(airplane);
         return Ok();
     }
     
     [HttpPost("{airplaneId:int}/ready")]
     public async Task<IActionResult> ScheduleCheckIn(int airplaneId)
     {
-        await _scheduleCheckIn.InvokeAsync(airplaneId);
+        await scheduleCheckIn.InvokeAsync(airplaneId);
         return Ok();
     }
 }

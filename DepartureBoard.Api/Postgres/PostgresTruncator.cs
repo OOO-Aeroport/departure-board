@@ -4,11 +4,9 @@ namespace DepartureBoard.Api.Postgres;
 
 public class PostgresTruncator(DbContext context)
 {
-    private readonly DbContext _context = context;
-    
     public void Truncate()
     {
-        var tableNames = _context.Model.GetEntityTypes()
+        var tableNames = context.Model.GetEntityTypes()
             .Select(t => t.GetTableName())
             .Distinct()
             .ToList();
@@ -16,7 +14,7 @@ public class PostgresTruncator(DbContext context)
         foreach (var tableName in tableNames)
         {
             var query = $"TRUNCATE TABLE public.\"{tableName}\" RESTART IDENTITY CASCADE";
-            _context.Database.ExecuteSqlRaw(query);
+            context.Database.ExecuteSqlRaw(query);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DepartureBoard.Desktop;
+﻿using DepartureBoard.Desktop.ViewModels;
+
+namespace DepartureBoard.Desktop;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

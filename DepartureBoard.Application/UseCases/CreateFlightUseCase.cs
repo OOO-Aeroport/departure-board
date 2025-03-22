@@ -9,23 +9,19 @@ public class CreateFlightUseCase(IAirplaneFlightUnitOfWork unitOfWork,
     ITicketOfficeClient ticketOffice, IPassengerClient passenger,
     TimeService timeService)
 {
-    private readonly IAirplaneFlightUnitOfWork _unitOfWork = unitOfWork;
-    private readonly ITicketOfficeClient _ticketOffice = ticketOffice;
-    private readonly IPassengerClient _passenger = passenger;
-
     public async Task InvokeAsync(Airplane airplane)
     {
-        await _unitOfWork.AddAirplaneAndFlightAsync(airplane, timeService.Now);
+        await unitOfWork.AddAirplaneAndFlightAsync(airplane, timeService.Now);
 
         if (airplane.Flight == null) throw new NullReferenceException();
         
-        var task1 = _ticketOffice.NotifyFlightCreated(
+        var task1 = ticketOffice.NotifyFlightCreated(
             new
             {
                 flightId = airplane.Flight.Id, airplaneId = airplane.Id,
                 airplane.SeatsAvailable, airplane.BaggageAvailable
             });
-        var task2 = _passenger.NotifyFlightCreated(
+        var task2 = passenger.NotifyFlightCreated(
             new
             {
                 flightId = airplane.Flight.Id,

@@ -6,7 +6,7 @@ public class SingletonHttpClient
 {
     private readonly HttpClient _client;
     private static SingletonHttpClient? _instance;
-    private static readonly Lock Lock = new Lock();
+    private static readonly Lock Lock = new();
     
     public static SingletonHttpClient Instance
     {

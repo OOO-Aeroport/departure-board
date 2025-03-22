@@ -5,11 +5,9 @@ namespace DepartureBoard.Infrastructure.Persistence.EntityFramework;
 
 public class EfAirplaneRepository(AirplaneFlightDbContext context) : IAirplaneRepository
 {
-    private readonly AirplaneFlightDbContext _context = context;
-    
     public async Task AddAsync(Airplane airplane)
-        => await _context.Airplanes.AddAsync(airplane);
+        => await context.Airplanes.AddAsync(airplane);
     
     public async Task SaveChangesAsync()
-        => await _context.SaveChangesAsync();
+        => await context.SaveChangesAsync();
 }
