@@ -95,7 +95,7 @@ public enum Constants
 
 ![DesktopApp](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img7.jpg)
 
-Не забудьте изменить базовый адрес SingletonHttpClient для связи с сервисом "Табло" в конструкторе App.
+Не забудьте изменить базовый адрес SingletonHttpClient для связи с сервисом "Табло" в **DepartureBoardBaseAddress.txt**.
 
 ## 3. Взаимодействие с другими сервисами
 
