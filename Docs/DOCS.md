@@ -87,6 +87,8 @@ public enum Constants
 
 ![DesktopApp](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img7.jpg)
 
+Не забудьте изменить базовый адрес SingletonHttpClient для связи с сервисом "Табло" в конструкторе App.
+
 ## 3. Взаимодействие с другими сервисами
 
 ### **Создание рейса**
@@ -98,6 +100,24 @@ public enum Constants
 2. **Сервис "Табло"** пересылает уведомление сервисам "Пассажир" и "Касса".
 3. **Проходит установленный интервал модельного времени**.
 4. **Сервис "Табло"** уведомляет сервисы "Пассажир" и "Касса" о завершении регистрации.
+
+Все базовые адреса внешних сервисов расположены в appsettings.json:
+```json
+"Clients": {
+    "TicketOfficeHttpClient":
+    {
+      "BaseAddress": "http://26.109.26.0:5555/ticket-office/"
+    },
+    "PassengerHttpClient":
+    {
+      "BaseAddress": "http://26.49.89.37:5555/passenger/"
+    },
+    "CheckInHttpClient":
+    {
+      "BaseAddress": "http://26.109.26.0:5555/check-in/"
+    }
+  }
+```
 
 ## 4. API
 
