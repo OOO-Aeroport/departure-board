@@ -109,7 +109,7 @@ public enum Constants
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Database=dep_board;Username=dep_board_admin;Password=samolet"
+    "Postgres": "Host=localhost;Database=dep_board;Username=dep_board_admin;Password=samolet"
   }
 }
 ```
