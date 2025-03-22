@@ -34,7 +34,7 @@
 
 ---
 
-### Формат команды изменения количества модельных секунд в тик (SPT)
+### Формат команды изменения количества модельных секунд в тик (Seconds-Per-Tick)
 
 ![Put SPT](https://github.com/OOO-Aeroport/departure-board/blob/master/Docs/Images/img6.jpg)
 
