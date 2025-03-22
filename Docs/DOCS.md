@@ -78,7 +78,6 @@ public enum Constants
 - Различные настройки и опции.
 
 #### **Зависимости:**
-- `Microsoft.AspNetCore.OpenApi` **(9.0.0)** - поддержка OpenAPI.
 - `Microsoft.EntityFrameworkCore.Design` **(9.0.3)** - инструменты для работы с EF Core.
 - `Swashbuckle.AspNetCore` **(7.3.1)** - генерация Swagger-документации.
 
